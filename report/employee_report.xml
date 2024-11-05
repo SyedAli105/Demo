@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_employee_template" model="ir.actions.report">
+       <field name="name">Print Employee Report</field>
+       <field name="model">hr.employee</field>
+       <field name="report_type">qweb-pdf</field>
+       <field name="report_name">cf_employee_report_custom.employee_report</field>
+       <field name="report_file">cf_employee_report_custom.employee_report</field>
+       <field name="print_report_name">'Employee Report - %s' % (object.name)</field>
+       <field name="binding_model_id" ref="model_hr_employee"/>
+       <field name="binding_type">report</field>
+    </record>
+   <template id="employee_report">
+    <t t-call="web.html_container" header="False">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <main>
+                        <p t-field="o.date" class="text-right"/>
+
+                        <h2 class="text-center"><u>Employment Certificate</u></h2>
+
+                        <p>
+                            This is to certify that Mr./Ms. <b><span t-field="o.name"/></b>,
+                            holder of Passport Number <b><span t-field="o.passport_id"/></b>, is working at
+                            <b><span t-field="o.company_name"/></b>, in the capacity of <b><span t-field="o.job_id"/></b>  from
+                            <b><span t-field="o.hiring_date"/></b>.
+                        </p>
+
+                        <p>
+                            Should you require any additional information, please do not hesitate to contact Human
+                            Resources Department.
+                        </p>
+
+                        <p>Sincerely,</p>
+
+                        <p>For <b><span t-field="o.company_name"/></b></p>
+
+                        <p><strong>Priya Rani</strong><br/>
+                            HR / Admin Manager<br/>
+                            <img t-att-src="image_data_uri(o.employee_signature)" style="max-height:45pt;max-width:45%"/>
+                        </p>
+                    </main>
+                </div>
+            </t>
+        </t>
+    </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_employee_form_custom" model="ir.ui.view">
+        <field name="name">hr.employee.alter</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="company_name"/>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="after">
+                    <field name="hiring_date"/>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']//group[.//field[@name='country_id']]" position="after">
+                    <group string="Employee Signature">
+                        <field name="employee_signature"/>
+                    </group>
+                </xpath>
+        </field>
+    </record>
+</odoo>
