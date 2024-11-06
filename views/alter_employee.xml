@@ -11,9 +11,25 @@
                 <xpath expr="//field[@name='work_email']" position="after">
                     <field name="hiring_date"/>
                 </xpath>
+                <xpath expr="//field[@name='hiring_date']" position="after">
+                    <field name="last_working_date"/>
+                </xpath>
                 <xpath expr="//page[@name='personal_information']//group[.//field[@name='country_id']]" position="after">
                     <group string="Employee Signature">
                         <field name="employee_signature"/>
+                    </group>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']/group/group/field[@name='private_phone']" position="after">
+                        <field name="bank_name"/>
+                </xpath>
+                <xpath expr="//page[@name='hr_settings']//group[.//field[@name='barcode']]" position="after">
+                    <group string="Salary Details">
+                        <field name="currency_id" options="{'no_create': True}" string="Currency"/>
+                        <field name="basic_salary"/>
+                        <field name="accommodation_allowance"/>
+                        <field name="transportation_allowance"/>
+                        <field name="other_allowance"/>
+                        <field name="total_salary" readonly="1"/>
                     </group>
                 </xpath>
         </field>

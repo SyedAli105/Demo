@@ -4,5 +4,5 @@
     "license": "LGPL-3",
     'depends': ['hr'],
     'security':[],
-    'data': ['views/alter_employee.xml','report/employee_report.xml']
+    'data': ['views/alter_employee.xml','report/employee_report.xml','report/employee_experience_report.xml']
 }

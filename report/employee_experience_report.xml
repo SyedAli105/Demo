@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_experience_employee_template" model="ir.actions.report">
+       <field name="name">Print Experience Report</field>
+       <field name="model">hr.employee</field>
+       <field name="report_type">qweb-pdf</field>
+       <field name="report_name">cf_employee_report_custom.employee_experience_report</field>
+       <field name="report_file">cf_employee_report_custom.employee_experience_report</field>
+       <field name="print_report_name">'Employee Experience Report - %s' % (object.name)</field>
+       <field name="binding_model_id" ref="model_hr_employee"/>
+       <field name="binding_type">report</field>
+    </record>
+   <template id="employee_experience_report">
+    <t t-call="web.html_container" header="False">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <main>
+                        <p t-field="o.date" class="text-right"/>
+
+                        <h2 class="text-center"><u>Experience Letter</u></h2>
+
+                        <p>
+                            This is to certify that  <b>Mr./Ms.<span t-field="o.name"/></b>,
+                            holder of Passport Number <b><span t-field="o.passport_id"/></b>, had been employed in our company as a
+                            <b><span t-field="o.job_id"/></b>  from
+                            <b><span t-field="o.hiring_date"/></b> till <b><span t-field="o.last_working_date"/></b>.
+                        </p>
+
+                        <p>
+                            Moreover, during his/her tenure with us, he/she has established herself as an attentive, and proactive
+                            person. He/She has been an integral part of our team and has shown exceptional skills, a strong work ethic,
+                            and the ability to work well with colleagues.
+                        </p>
+
+                        <p>
+                            We take advantage of this opportunity to thank  <b>Mr/Ms.<span t-field="o.name"/></b> for the excellence
+                            and quality of work he/she has accomplished within our company.
+                        </p>
+
+                        <p>
+                            We are confident that <b>Mr/Ms.<span t-field="o.name"/></b> will be an asset to any
+                            organization. We wish her the very best in her future endeavors.
+                        </p>
+
+                        <p>
+                            Should you require any additional information, please do not hesitate
+                            to contact the Human Resources Department.
+                        </p>
+                        <p>Sincerely,</p>
+
+                        <p>For <b><span t-field="o.company_name"/></b></p>
+
+                        <p><strong>Priya Rani</strong><br/>
+                            HR / Admin Manager<br/>
+                            <img t-att-src="image_data_uri(o.employee_signature)" style="max-height:45pt;max-width:45%"/>
+                        </p>
+                    </main>
+                </div>
+            </t>
+        </t>
+    </t>
+    </template>
+
+</odoo>
